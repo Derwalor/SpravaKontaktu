@@ -1,8 +1,13 @@
-const mongo = require('mongodb');
+const express = require('express');
+const app = express();
+const vypis = require("./find");
+app.use(cors());
 
+app.get('/', (req, res) => {
+  vypis(function (asdf){
+    res.send(asdf);
+    });
+    
+});
 
-
-mongoose.connect('mongodb://localhost:27017/Kontakty', { useNewUrlParser: true })
-  .then(() => console.log('Connected to MongoDB!'))
-  .catch(error => console.error('Could not connect to MongoDB... ', error));
-
+app.listen(3000, () => console.log('Listening on port 3000...'));
