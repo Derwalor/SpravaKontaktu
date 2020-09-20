@@ -1,0 +1,28 @@
+{
+  "name": "spravakontaktu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Derwalor/SpravaKontaktu.git"
+  },
+  "keywords": [
+    "node",
+    "mongo",
+    "express"
+  ],
+  "author": "Derwalor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Derwalor/SpravaKontaktu/issues"
+  },
+  "homepage": "https://github.com/Derwalor/SpravaKontaktu#readme",
+  "dependencies": {
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.6"
+  }
+}
