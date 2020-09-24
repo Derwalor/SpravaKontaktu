@@ -14,8 +14,12 @@ app.get('/', (req, res) => { // vypis databaze
 
 
 app.post('/', (req, res) => {
+  console.log("začátek appky");
+  //console.log(JSON.stringify(req.body, undefined, 4));
   novy(function (pridat){
-    res.send(pridat);
+    console.log("začátek funkce");
+    //console.log(JSON.stringify(req.body, undefined, 4));
+    //res.send(pridat);
   });
 });
 

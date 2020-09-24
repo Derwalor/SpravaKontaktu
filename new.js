@@ -6,11 +6,13 @@ const MongoClient = require('mongodb').MongoClient;
 
      db = MongoClient.db("Kontakty")
      db.collection("Zakaznici", function (err, collection){
-            collection.insertOne().toArray(function(err, res) {
+            console.log("spusteni kolekce");
+            collection.insertOne(function(err, req, res) {
             if(err) throw err;    
-            console.log(items);
-            //db.close(); 
-            callback(items);
+            console.log(JSON.stringify(req.body, undefined, 4));
+            console.log("prošlo to přes err");
+            db.close(); 
+            //callback(items);
         });
         
     });
