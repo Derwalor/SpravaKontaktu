@@ -5,8 +5,8 @@ MongoClient.connect("mongodb://localhost:27017/Kontakty", function (err, MongoCl
         if(err) throw err;
 
      db = MongoClient.db("Kontakty")
-     db.collection("Zakaznici", function (err, collection){
-            collection.find().toArray(function(err, items) {
+     db.collection("Zakaznici", function (err, zakaznici){
+            zakaznici.find().toArray(function(err, items) {
             if(err) throw err;    
             console.log(items);
             MongoClient.close(); 

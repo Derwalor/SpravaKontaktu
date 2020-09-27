@@ -3,8 +3,11 @@ const app = express();
 const vypis = require("./find");
 const novy = require("./new");
 const cors = require('cors');
+const bodyParser = require('body-parser');
+var text = "test";
 
 app.use(cors());
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => { // vypis databaze
   vypis(function (asdf){
@@ -13,14 +16,12 @@ app.get('/', (req, res) => { // vypis databaze
 });
 
 
-app.post('/', (req, res) => {
-  console.log("začátek appky");
-  //console.log(JSON.stringify(req.body, undefined, 4));
-  novy(function (pridat){
-    console.log("začátek funkce");
-    //console.log(JSON.stringify(req.body, undefined, 4));
-    //res.send(pridat);
-  });
+app.post('/',bodyParser.json(), (req, res) => {
+    console.log(JSON.stringify(req.body, undefined, 4));
+    novy(text, req.body, function (req, res){
+    console.log("návrat z funkce");
+    console.log(text);
+    });
 });
 
 
