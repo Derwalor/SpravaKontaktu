@@ -4,7 +4,6 @@ const vypis = require("./find");
 const novy = require("./new");
 const cors = require('cors');
 const bodyParser = require('body-parser');
-var text = "test";
 
 app.use(cors());
 app.use(bodyParser.json())
@@ -17,10 +16,9 @@ app.get('/', (req, res) => { // vypis databaze
 
 
 app.post('/',bodyParser.json(), (req, res) => {
-    console.log(JSON.stringify(req.body, undefined, 4));
-    novy(text, req.body, function (req, res){
-    console.log("návrat z funkce");
-    console.log(text);
+    //console.log(JSON.stringify(req.body, undefined, 4)); kontrola obsahu postmana
+    novy(req.body, function (req, res){
+    console.log("Dokument byl přidán.");
     });
 });
 
