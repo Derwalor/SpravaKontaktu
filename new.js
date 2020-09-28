@@ -3,8 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
  function novy(zakaznik, callback) {
     MongoClient.connect("mongodb://localhost:27017/Kontakty", function (err, MongoClient) {
         if(err) throw err;
-        //console.log(zakaznik); kontrola funkčnosti routy
-
+        
        db = MongoClient.db("Kontakty");
        db.collection("Zakaznici", function (err, collection) {
                 if (err) throw err;

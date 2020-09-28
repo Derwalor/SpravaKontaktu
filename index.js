@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const vypis = require("./find");
 const novy = require("./new");
+const smaz = require("./delete");
+const uprav = require("./update");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -15,11 +17,24 @@ app.get('/', (req, res) => { // vypis databaze
 });
 
 
-app.post('/',bodyParser.json(), (req, res) => {
-    //console.log(JSON.stringify(req.body, undefined, 4)); kontrola obsahu postmana
-    novy(req.body, function (req, res){
-    console.log("Dokument byl přidán.");
+app.post('/',bodyParser.json(), (req, res) => { //vložení kontaktu
+    novy(req.body, function (req, res){ 
+    res.send("Záznam byl přidán.");
     });
+});
+
+app.delete('/',bodyParser.json(), (req, res) => {
+  console.log(JSON.stringify(req.body, undefined, 4)); //kontrola obsahu postmana
+  smaz(req.body, function (req, res){
+  res.send("Záznam byl smazán.");
+  });
+});
+
+app.update('/',bodyParser.json(), (req, res) => {
+  console.log(JSON.stringify(req.body, undefined, 4)); //kontrola obsahu postmana
+  uprav(req.body, function (req, res){
+  res.send("Záznam byl změněn.");
+  });
 });
 
 
