@@ -1,23 +1,23 @@
 const MongoClient = require('mongodb').MongoClient;
 
- function custList(callback) {
+ function delCust(delOne, callback) {
    MongoClient.connect("mongodb://localhost:27017/Kontakty", function (err, MongoClient) {
         if(err) callback(err, undefined);
         else {db = MongoClient.db("Kontakty")
         db.collection("Zakaznici", function (err, collection){
             if (err) callback(err, undefined);
             else {
-            collection.find().toArray(function(err, customers){
+            collection.deleteOne(delOne)
                if (err) callback(err, undefined)
                else{
-               console.log(customers);
+               console.log(delOne);
                MongoClient.close(); 
-               callback(undefined, customers);
-            }})
+               callback(undefined, delOne);
+            };
         }});
         
      }});
     
 }
 
-module.exports = custList;
+module.exports = delCust;

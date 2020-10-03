@@ -1,21 +1,24 @@
 const MongoClient = require('mongodb').MongoClient;
 
- function novy(zakaznik, callback) {
-    MongoClient.connect("mongodb://localhost:27017/Kontakty", function (err, MongoClient) {
-        if(err) throw err;
-        
-       db = MongoClient.db("Kontakty");
-       db.collection("Zakaznici", function (err, collection) {
-                if (err) throw err;
-                collection.insertOne(zakaznik, function (err, req, res) {
-                if (err) throw err;
-                console.log(zakaznik);
-                MongoClient.close();
-                callback(zakaznik);
-              });  
 
-    });
-     
-  });
+ function newCust(customer, callback) {
+    MongoClient.connect("mongodb://localhost:27017/Kontakty", function (err, MongoClient) {
+        if(err) callback(err, undefined);
+        else {
+          db = MongoClient.db("Kontakty")
+          db.collection("Zakaznici", function (err, custList) {
+                if (err) callback(err, undefined);
+                else {
+                custList.insertOne(customer, function (err) {
+                  if (err) callback(err, undefined);
+                  else {
+                  console.log(customer);
+                  MongoClient.close();
+                  callback(undefined, customer);
+                }});  
+
+          }});
+  
+ }});
 }
-module.exports = novy;
+module.exports = newCust;
